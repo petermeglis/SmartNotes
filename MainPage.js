@@ -11,6 +11,8 @@ import {
 	TouchableHighlight,
 } from 'react-native';
 
+import {Actions} from 'react-native-router-flux';
+
 import {AudioRecorder, AudioUtils} from 'react-native-audio';
 
 export default class MainPage extends Component{
@@ -199,6 +201,7 @@ export default class MainPage extends Component{
       	this.setState({ finished: didSucceed });
       	console.warn(`Finished recording of duration ${this.state.currentTime} seconds at path: ${filePath}`);
     	// Go to new scene with filepath
+    	Actions.secondpage();
     }
 
     render() {
