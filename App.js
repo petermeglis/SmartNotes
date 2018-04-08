@@ -5,38 +5,144 @@
  */
 
 import React, { Component } from 'react';
+
+import { StackNavigator } from 'react-navigation';
+
 import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableHighlight,
+  Button,
+
 } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu butsdfsdfsdfsdfton for dev menu',
-});
 
-type Props = {};
-export default class App extends Component<Props> {
+
+// type Props = {};
+// export default class App extends Component<Props> {
+//   render() {
+//     return (
+//       <View style={styles.container}>
+      
+
+
+     
+//         <Text style ={styles.show}>
+//           Record
+//         </Text>
+
+//         <TouchableHighlight style={styles.button}>
+//         <Text style ={styles.buttontext}>
+//           Start/Stop
+//         </Text>
+//         </TouchableHighlight>
+
+
+
+
+
+//       </View>
+
+
+
+//     );
+//   }
+
+
+// }
+
+class HomeScreen extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
+        <View style={styles.container}>
+
+       <Text style ={styles.show}>
+          Record
         </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+
+         <Button 
+          title="Start/Stop"
+          onPress={() => this.props.navigation.navigate('Details')}
+        />
+
+        <Button 
+          title="goo"
+          onPress={() => this.props.navigation.navigate('Record')}
+        />
+
+
+
+      </View>
+
+
+
+
+
+
+
+
+      
+    );
+  }
+}
+
+class DetailsScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <Text>Details Screen</Text>
+        <Button
+          title="Go to Details... again"
+          onPress={() => this.props.navigation.navigate('Details')}
+        />
+        <Button
+          title="Go back"
+          onPress={() => this.props.navigation.goBack()}
+        />
       </View>
     );
   }
 }
+
+
+
+
+
+
+
+const RootStack = StackNavigator(
+  {
+    Home: {
+      screen: HomeScreen,
+    },
+    Details: {
+      screen: DetailsScreen,
+    },
+
+    Record: {
+
+      screen: RecordScreen,
+    },
+  },
+  {
+    initialRouteName: 'Home',
+  
+
+  }
+);
+
+
+
+export default StackNavigator({
+  Home: {
+    screen: HomeScreen,
+  },
+});
+
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -55,4 +161,28 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+
+
+  show: {
+    textAlign: 'center',
+    fontSize:22,
+    color: 'red',
+    marginBottom: 5,
+  },
+
+button: {
+    height: 48,
+    width:120,
+    backgroundColor: 'grey',
+  },
+
+  buttontext: {
+    height:23,
+    color: 'black',
+    alignSelf:'center',
+    fontSize:22,
+    margin: 10,
+  },
+
+
 });
