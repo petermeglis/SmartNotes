@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Alert, AppRegistry, Button, StyleSheet, View } from 'react-native';
-const Speech = require('@google-cloud/speech');
+//const Speech = require('@google-cloud/speech');
 
 
 import t from 'tcomb-form-native';
