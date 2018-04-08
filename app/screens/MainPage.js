@@ -224,7 +224,6 @@ export default class MainPage extends Component{
         <View style={styles.container}>
           <View style={styles.controls}>
             {this._renderButton("RECORD", () => {this._record()}, this.state.recording )}
-            {this._renderButton("PLAY", () => {this._play()} )}
             {this._renderButton("STOP", () => {this._stop()} )}
             {/* {this._renderButton("PAUSE", () => {this._pause()} )} */}
             {this._renderPauseButton(() => {this.state.paused ? this._resume() : this._pause()})}
