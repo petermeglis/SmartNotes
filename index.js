@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import App from './App';
+import MainPage from './MainPage';
 
-AppRegistry.registerComponent('SmartNotes', () => App);
+AppRegistry.registerComponent('SmartNotes', () => MainPage);
