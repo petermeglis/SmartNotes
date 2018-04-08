@@ -11,8 +11,6 @@ import {
 	TouchableHighlight,
 } from 'react-native';
 
-import {Actions} from 'react-native-router-flux';
-
 import {AudioRecorder, AudioUtils} from 'react-native-audio';
 
 export default class MainPage extends Component{
@@ -28,13 +26,25 @@ export default class MainPage extends Component{
     };
 
     prepareRecordingPath(audioPath){
-      AudioRecorder.prepareRecordingAtPath(audioPath, {
-        SampleRate: 22050,
-        Channels: 1,
-        AudioQuality: "Low",
-        AudioEncoding: "aac",
-        AudioEncodingBitRate: 32000
-      });
+      if (Platform.OS === 'ios') {
+          AudioRecorder.prepareRecordingAtPath(audioPath, {
+          SampleRate: 22050,
+          Channels: 1,
+          AudioQuality: "Low",
+          AudioEncoding: "amr",
+          AudioEncodingBitRate: 32000
+        });
+      }
+      else {
+          AudioRecorder.prepareRecordingAtPath(audioPath, {
+          SampleRate: 22050,
+          Channels: 1,
+          AudioQuality: "Low",
+          AudioEncoding: "amr_wb",
+          AudioEncodingBitRate: 32000
+        });
+      }
+      
     }
 
     componentDidMount() {
@@ -201,8 +211,12 @@ export default class MainPage extends Component{
       	this.setState({ finished: didSucceed });
       	console.warn(`Finished recording of duration ${this.state.currentTime} seconds at path: ${filePath}`);
     	// Go to new scene with filepath
-    	Actions.secondpage();
+    	 this.nextPage(filePath);
     }
+
+    nextPage = (audioFilePath) => {
+      this.props.navigation.navigate('SecondPage', {audioFilePath}); // Add filepath
+    };
 
     render() {
 
