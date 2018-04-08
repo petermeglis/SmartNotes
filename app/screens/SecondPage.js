@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Alert, AppRegistry, Button, StyleSheet, View } from 'react-native';
+const Speech = require('@google-cloud/speech');
 
 
 import t from 'tcomb-form-native';
@@ -11,14 +12,24 @@ const Input = t.struct({
   filename: t.String
 })
 
-const speech = require('@google-cloud/speech');
+
+
+function uploadFile(filePath) {
+  
+
+  Alert.alert(filePath)
+
+}
 
 
 export default class SecondPage extends Component {
 
+
+
   export = () => {
     const inputPath = this._form.getValue();
     console.log('name: ', inputPath.filename);
+    uploadFile("test");
   }
 
   render() {
