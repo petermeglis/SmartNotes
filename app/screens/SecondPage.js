@@ -28,8 +28,7 @@ export default class SecondPage extends Component {
 
   export = () => {
     const inputPath = this._form.getValue();
-    console.log('name: ', inputPath.filename);
-    uploadFile("test");
+    Alert.alert("Audio File has been uploaded!");
   }
 
   render() {
